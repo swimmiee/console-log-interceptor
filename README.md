@@ -1,4 +1,4 @@
-# CONSOLE-LOG-INTERCEPTOR
+# console-log-interceptor
 console.log interceptor for grab your console.logs
 
 ## Installation

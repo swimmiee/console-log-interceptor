@@ -69,8 +69,8 @@ class LogInterceptor {
             JSON.stringify(logs, options.json.replacer, options.json.space)
             :
                 header + logs.join('\n') + (footer || (logs.length > 0 ? '\n\n' : ''));
-        fs_extra_1.default.writeFileSync(options.path, data, { encoding: 'utf-8', flag: options.append ? 'a' : 'w' });
-        if (options.clear)
+        fs_extra_1.default.writeFileSync(options.path, data, { encoding: 'utf-8', flag: options.append !== false ? 'a' : 'w' });
+        if (options.clear !== false)
             this.clear();
     }
 }

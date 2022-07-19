@@ -11,7 +11,7 @@ export interface JSONStringifyOptions {
 }
 export interface SaveLogOptions {
     path: string;
-    append: boolean;
+    append?: boolean;
     json?: false | JSONStringifyOptions;
     clear?: boolean;
     header?: string;
