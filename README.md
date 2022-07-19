@@ -20,8 +20,6 @@ const logs = interceptor.get()  // [ 'Hello, World!', 'logging...' ]
 
 ## Save Logs
 ```typescript
-import interceptor from "console-log-interceptor"
-
 interceptor.intercept()    // start intercept
 console.log("Hello, World!")
 console.log("logging...")
