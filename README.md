@@ -36,7 +36,7 @@ interceptor.save({
 ```
 
 #### OUTPUT
-at `./logs/mylog.log`
+at  `./logs/mylog.log`
 ```
 --- START LOG ---
 Hello, World!
@@ -57,7 +57,7 @@ interceptor.save({
 })
 ```
 #### OUTPUT
-at `./logs/chalk-ignored.log`
+at  `./logs/chalk-ignored.log`
 ```
 Hello!!!
 ```

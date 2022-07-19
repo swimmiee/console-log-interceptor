@@ -1,6 +1,6 @@
 {
   "name": "console-log-interceptor",
-  "version": "1.0.13",
+  "version": "1.1.0",
   "description": "console.log interceptor for grab console.logs",
   "main": "dist/index.js",
   "scripts": {
