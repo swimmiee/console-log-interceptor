@@ -14,10 +14,10 @@ export interface JSONStringifyOptions {
 
 export interface SaveLogOptions {
     path: string
-    append: boolean
+    append?: boolean // default: true
     // print as json file. default: false
     json?: false | JSONStringifyOptions
-    clear?: boolean
+    clear?: boolean // default: true
     header?: string
     footer?: string
 }

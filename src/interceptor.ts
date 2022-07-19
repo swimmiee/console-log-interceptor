@@ -85,10 +85,10 @@ export class LogInterceptor {
         fs.writeFileSync(
             options.path, 
             data, 
-            {encoding: 'utf-8', flag: options.append ? 'a' :'w'}
+            {encoding: 'utf-8', flag: options.append !== false ? 'a' :'w'}
         )
 
-        if(options.clear)
+        if(options.clear !== false)
             this.clear();
     }
 }
