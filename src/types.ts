@@ -2,7 +2,7 @@
 export type ConsoleLog = (...data:any[]) => void
 
 export interface InterceptorDatetimeOption {
-    format?: (date: Date) => string
+    format?: string | ((date: Date) => string)
 }
 export interface InterceptorOption {
     datetime?: InterceptorDatetimeOption | null

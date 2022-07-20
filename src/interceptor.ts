@@ -1,4 +1,5 @@
 import fs from 'fs-extra'
+import { dateFormatter } from './dateFormatter'
 import { ConsoleLog, InterceptorDatetimeOption, InterceptorOption, Log, SaveLogOptions } from './types'
 
 export class LogInterceptor {
@@ -14,6 +15,7 @@ export class LogInterceptor {
 
     public clear(){
         this.logs = []
+        this.datetimeOption = null;
     }
 
     public intercept(option?:InterceptorOption){
@@ -30,7 +32,6 @@ export class LogInterceptor {
     public stopIntercept(clear?: boolean){
         // take back to the original console.log
         console.log = this.origin;
-        this.datetimeOption = null;
         if(clear) 
             this.clear();
     }
@@ -53,11 +54,14 @@ export class LogInterceptor {
             const {timestamp, log} = logData;
             if(this.datetimeOption){
                 const date = new Date(timestamp);
-                const formatted = this.datetimeOption.format ? 
-                    this.datetimeOption.format(date)
+                const dateString = this.datetimeOption.format ? 
+                    typeof this.datetimeOption.format === "function" ?
+                        this.datetimeOption.format(date)
+                        :
+                        dateFormatter(date, this.datetimeOption.format)
                     :
                     `[${(date as Date).toLocaleString()}] `
-                return formatted + log
+                return dateString + log
             }
             else {
                 return log
