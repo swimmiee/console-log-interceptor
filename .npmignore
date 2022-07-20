@@ -17,4 +17,3 @@ src
 .mocharc.json
 tslint.json
 .env
-tsconfig.json
