@@ -5,22 +5,22 @@ import { ConsoleLog, InterceptorDatetimeOption, InterceptorOption, Log, SaveLogO
 export class LogInterceptor {
     private origin: ConsoleLog
     private logs: Log[]
-    private datetimeOption: InterceptorDatetimeOption | null
+    private datetimeOption?: InterceptorDatetimeOption | null
 
     constructor(){
         this.origin = console.log;
         this.logs = [];
-        this.datetimeOption = null;
+        this.datetimeOption = undefined;
     }
 
     public clear(){
         this.logs = []
-        this.datetimeOption = null;
+        this.datetimeOption = undefined;
     }
 
     public intercept(option?:InterceptorOption){
         this.clear()
-        this.datetimeOption = option?.datetime || null;
+        this.datetimeOption = option?.datetime;
 
         // redefine console.log
         console.log = (...data:any[]) => {
@@ -52,19 +52,18 @@ export class LogInterceptor {
     public get(){
         return this.logs.map(logData => {
             const {timestamp, log} = logData;
-            if(this.datetimeOption){
+            if(this.datetimeOption === null)
+                return log
+            else {
                 const date = new Date(timestamp);
-                const dateString = this.datetimeOption.format ? 
+                const dateString = this.datetimeOption?.format ? 
                     typeof this.datetimeOption.format === "function" ?
                         this.datetimeOption.format(date)
                         :
                         dateFormatter(date, this.datetimeOption.format)
                     :
-                    `[${(date as Date).toLocaleString()}]`
+                    `${(date as Date).toLocaleString()}`
                 return `${dateString} ${log}`
-            }
-            else {
-                return log
             }
         })
     }
