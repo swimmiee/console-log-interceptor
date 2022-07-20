@@ -19,8 +19,8 @@ export class LogInterceptor {
     }
 
     public intercept(option?:InterceptorOption){
-        this.datetimeOption = option?.datetime || null;
         this.clear()
+        this.datetimeOption = option?.datetime || null;
 
         // redefine console.log
         console.log = (...data:any[]) => {
