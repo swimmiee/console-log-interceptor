@@ -60,8 +60,8 @@ export class LogInterceptor {
                         :
                         dateFormatter(date, this.datetimeOption.format)
                     :
-                    `[${(date as Date).toLocaleString()}] `
-                return dateString + log
+                    `[${(date as Date).toLocaleString()}]`
+                return `${dateString} ${log}`
             }
             else {
                 return log
